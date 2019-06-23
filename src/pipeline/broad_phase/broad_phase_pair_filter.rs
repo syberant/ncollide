@@ -13,7 +13,7 @@ pub trait BroadPhasePairFilter<N: RealField, T>: Any + Send + Sync {
 ///
 /// All filters have have to return `true` in order to allow a proximity to be further handled.
 pub struct BroadPhasePairFilters<N: RealField, T> {
-    filters: Vec<(String, Box<BroadPhasePairFilter<N, T>>)>,
+    filters: Vec<(String, Box<dyn BroadPhasePairFilter<N, T>>)>,
 }
 
 impl<N: RealField, T> BroadPhasePairFilters<N, T> {
@@ -28,7 +28,7 @@ impl<N: RealField, T> BroadPhasePairFilters<N, T> {
     pub fn register_collision_filter(
         &mut self,
         name: &str,
-        callback: Box<BroadPhasePairFilter<N, T>>,
+        callback: Box<dyn BroadPhasePairFilter<N, T>>,
     )
     {
         for &mut (ref mut n, ref mut f) in self.filters.iter_mut() {

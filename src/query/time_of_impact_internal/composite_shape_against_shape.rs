@@ -12,7 +12,7 @@ pub fn composite_shape_against_shape<N, G1: ?Sized>(
     g1: &G1,
     m2: &Isometry<N>,
     vel2: &Vector<N>,
-    g2: &Shape<N>,
+    g2: &dyn Shape<N>,
 ) -> Option<N>
 where
     N: RealField,
@@ -27,7 +27,7 @@ where
 pub fn shape_against_composite_shape<N, G2: ?Sized>(
     m1: &Isometry<N>,
     vel1: &Vector<N>,
-    g1: &Shape<N>,
+    g1: &dyn Shape<N>,
     m2: &Isometry<N>,
     vel2: &Vector<N>,
     g2: &G2,
@@ -49,7 +49,7 @@ struct CompositeShapeAgainstAnyTOIVisitor<'a, N: 'a + RealField, G1: ?Sized + 'a
     g1: &'a G1,
     m2: &'a Isometry<N>,
     vel2: &'a Vector<N>,
-    g2: &'a Shape<N>,
+    g2: &'a dyn Shape<N>,
 }
 
 impl<'a, N, G1: ?Sized> CompositeShapeAgainstAnyTOIVisitor<'a, N, G1>
@@ -63,7 +63,7 @@ where
         g1: &'a G1,
         m2: &'a Isometry<N>,
         vel2: &'a Vector<N>,
-        g2: &'a Shape<N>,
+        g2: &'a dyn Shape<N>,
     ) -> CompositeShapeAgainstAnyTOIVisitor<'a, N, G1>
     {
         let ls_m2 = m1.inverse() * m2.clone();

@@ -10,10 +10,10 @@ use crate::shape::{Ball, Plane, Shape};
 pub fn shape_against_shape<N: RealField>(
     m1: &Isometry<N>,
     vel1: &Vector<N>,
-    g1: &Shape<N>,
+    g1: &dyn Shape<N>,
     m2: &Isometry<N>,
     vel2: &Vector<N>,
-    g2: &Shape<N>,
+    g2: &dyn Shape<N>,
 ) -> Option<N>
 {
     if let (Some(b1), Some(b2)) = (g1.as_shape::<Ball<N>>(), g2.as_shape::<Ball<N>>()) {

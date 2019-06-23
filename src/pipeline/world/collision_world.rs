@@ -19,7 +19,7 @@ use crate::shape::ShapeHandle;
 use std::vec::IntoIter;
 
 /// Type of the broad phase trait-object used by the collision world.
-pub type BroadPhaseObject<N> = Box<BroadPhase<N, AABB<N>, CollisionObjectHandle>>;
+pub type BroadPhaseObject<N> = Box<dyn BroadPhase<N, AABB<N>, CollisionObjectHandle>>;
 
 /// A world that handles collision objects.
 pub struct CollisionWorld<N: RealField, T> {

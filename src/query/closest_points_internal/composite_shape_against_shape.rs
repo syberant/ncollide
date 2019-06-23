@@ -10,7 +10,7 @@ pub fn composite_shape_against_shape<N, G1: ?Sized>(
     m1: &Isometry<N>,
     g1: &G1,
     m2: &Isometry<N>,
-    g2: &Shape<N>,
+    g2: &dyn Shape<N>,
     margin: N,
 ) -> ClosestPoints<N>
 where
@@ -27,7 +27,7 @@ where
 /// Closest points between a shape and a composite shape.
 pub fn shape_against_composite_shape<N, G2: ?Sized>(
     m1: &Isometry<N>,
-    g1: &Shape<N>,
+    g1: &dyn Shape<N>,
     m2: &Isometry<N>,
     g2: &G2,
     margin: N,
@@ -49,7 +49,7 @@ struct CompositeShapeAgainstShapeClosestPointsVisitor<'a, N: 'a + RealField, G1:
     m1: &'a Isometry<N>,
     g1: &'a G1,
     m2: &'a Isometry<N>,
-    g2: &'a Shape<N>,
+    g2: &'a dyn Shape<N>,
 }
 
 impl<'a, N, G1: ?Sized> CompositeShapeAgainstShapeClosestPointsVisitor<'a, N, G1>
@@ -61,7 +61,7 @@ where
         m1: &'a Isometry<N>,
         g1: &'a G1,
         m2: &'a Isometry<N>,
-        g2: &'a Shape<N>,
+        g2: &'a dyn Shape<N>,
         margin: N,
     ) -> CompositeShapeAgainstShapeClosestPointsVisitor<'a, N, G1>
     {

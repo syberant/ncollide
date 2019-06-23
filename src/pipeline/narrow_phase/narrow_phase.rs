@@ -13,16 +13,16 @@ use crate::utils::SortedPair;
 /// Collision detector dispatcher for collision objects.
 pub struct NarrowPhase<N: RealField> {
     id_alloc: IdAllocator,
-    contact_dispatcher: Box<ContactDispatcher<N>>,
-    proximity_dispatcher: Box<ProximityDispatcher<N>>,
+    contact_dispatcher: Box<dyn ContactDispatcher<N>>,
+    proximity_dispatcher: Box<dyn ProximityDispatcher<N>>,
     interactions: InteractionGraph<N>
 }
 
 impl<N: RealField> NarrowPhase<N> {
     /// Creates a new `NarrowPhase`.
     pub fn new(
-        contact_dispatcher: Box<ContactDispatcher<N>>,
-        proximity_dispatcher: Box<ProximityDispatcher<N>>,
+        contact_dispatcher: Box<dyn ContactDispatcher<N>>,
+        proximity_dispatcher: Box<dyn ProximityDispatcher<N>>,
     ) -> NarrowPhase<N>
     {
         NarrowPhase {

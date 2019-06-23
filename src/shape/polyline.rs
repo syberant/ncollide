@@ -498,7 +498,7 @@ impl<N: RealField> CompositeShape<N> for Polyline<N> {
         &self,
         i: usize,
         m: &Isometry<N>,
-        f: &mut FnMut(&Isometry<N>, &Shape<N>),
+        f: &mut dyn FnMut(&Isometry<N>, &dyn Shape<N>),
     )
     {
         let element = self.segment_at(i);
@@ -510,7 +510,7 @@ impl<N: RealField> CompositeShape<N> for Polyline<N> {
         i: usize,
         m: &Isometry<N>,
         prediction: &ContactPrediction<N>,
-        f: &mut FnMut(&Isometry<N>, &Shape<N>, &ContactPreprocessor<N>),
+        f: &mut dyn FnMut(&Isometry<N>, &dyn Shape<N>, &dyn ContactPreprocessor<N>),
     ) {
         let element = self.segment_at(i);
         let proc = PolylineContactProcessor::new(self, m, i, prediction);

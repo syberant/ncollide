@@ -37,6 +37,7 @@ ncollide3d = "0.19" # For 3D collision detection.
 And various traits for collision detectors and broad phase collision detection.
 */
 
+#![deny(bare_trait_objects)]
 #![deny(non_camel_case_types)]
 #![deny(unused_parens)]
 #![deny(non_upper_case_globals)]

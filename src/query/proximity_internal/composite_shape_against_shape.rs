@@ -11,7 +11,7 @@ pub fn composite_shape_against_shape<N: RealField, G1: ?Sized>(
     m1: &Isometry<N>,
     g1: &G1,
     m2: &Isometry<N>,
-    g2: &Shape<N>,
+    g2: &dyn Shape<N>,
     margin: N,
 ) -> Proximity
 where
@@ -33,7 +33,7 @@ where
 /// Proximity between a shape and a composite (`Mesh`, `Compound`) shape.
 pub fn shape_against_composite_shape<N: RealField, G2: ?Sized>(
     m1: &Isometry<N>,
-    g1: &Shape<N>,
+    g1: &dyn Shape<N>,
     m2: &Isometry<N>,
     g2: &G2,
     margin: N,
@@ -51,7 +51,7 @@ struct CompositeShapeAgainstAnyInterfVisitor<'a, N: 'a + RealField, G1: ?Sized +
     m1: &'a Isometry<N>,
     g1: &'a G1,
     m2: &'a Isometry<N>,
-    g2: &'a Shape<N>,
+    g2: &'a dyn Shape<N>,
     margin: N,
 }
 
@@ -62,7 +62,7 @@ where G1: CompositeShape<N>
         m1: &'a Isometry<N>,
         g1: &'a G1,
         m2: &'a Isometry<N>,
-        g2: &'a Shape<N>,
+        g2: &'a dyn Shape<N>,
         margin: N,
     ) -> CompositeShapeAgainstAnyInterfVisitor<'a, N, G1>
     {
