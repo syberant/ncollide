@@ -23,6 +23,20 @@ pub enum Interaction<N: RealField> {
     Proximity(ProximityAlgorithm<N>)
 }
 
+#[cfg(feature = "serde-serialize")]
+impl<N: RealField> serde::Serialize for Interaction<N> {
+    fn serialize<S: serde::Serializer>(&self, _serializer: S) -> Result<S::Ok, S::Error> {
+        unimplemented!()
+    }
+}
+
+#[cfg(feature = "serde-serialize")]
+impl<'de, N: RealField> serde::Deserialize<'de> for Interaction<N> {
+    fn deserialize<D: serde::Deserializer<'de>>(_deserializer: D) -> Result<Interaction<N>, D::Error> {
+        unimplemented!()
+    }
+}
+
 impl<N: RealField> Interaction<N> {
     /// Checks if this interaction is a potential contact interaction.
     pub fn is_contact(&self) -> bool {
