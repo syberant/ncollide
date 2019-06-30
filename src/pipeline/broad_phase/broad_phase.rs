@@ -4,6 +4,7 @@ use std::any::Any;
 use crate::math::Point;
 use crate::query::Ray;
 
+#[cfg_attr(feature = "serde-serialize", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct ProxyHandle(pub usize);
 

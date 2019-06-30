@@ -41,6 +41,7 @@ impl<N: RealField> Interaction<N> {
     }
 }
 
+#[cfg_attr(feature = "serde-serialize", derive(serde::Serialize, serde::Deserialize))]
 /// A graph where nodes are collision objects and edges are contact or proximity algorithms.
 pub struct InteractionGraph<N: RealField> {
     pub(crate) graph: UnGraph<CollisionObjectHandle, Interaction<N>, usize>

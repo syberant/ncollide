@@ -15,7 +15,7 @@ edition = "2018"
 [features]
 default = [ "dim2" ]
 dim2    = [ ]
-serde-serialize = [ "serde", "nalgebra/serde-serialize" ]
+serde-serialize = [ "serde", "nalgebra/serde-serialize", "petgraph/serde-1" ]
 
 [lib]
 name = "ncollide2d"

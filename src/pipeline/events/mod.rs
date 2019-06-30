@@ -5,6 +5,7 @@ use crate::query::Proximity;
 use std::iter::IntoIterator;
 use std::slice::Iter;
 
+#[cfg_attr(feature = "serde-serialize", derive(serde::Serialize, serde::Deserialize))]
 // FIXME: we want a structure where we can add elements, iterate on them, but not remove them
 // without clearing the whole structure.
 /// A set of events.
@@ -61,6 +62,7 @@ impl<'a, E> IntoIterator for &'a EventPool<E> {
 }
 
 #[derive(Copy, Clone, Hash, Debug)]
+#[cfg_attr(feature = "serde-serialize", derive(serde::Serialize, serde::Deserialize))]
 /// Events occuring when two collision objects start or stop being in contact (or penetration).
 pub enum ContactEvent {
     /// Event occuring when two collision objects start being in contact.
@@ -74,6 +76,7 @@ pub enum ContactEvent {
 }
 
 #[derive(Copy, Clone, Debug)]
+#[cfg_attr(feature = "serde-serialize", derive(serde::Serialize, serde::Deserialize))]
 /// Events occuring when two collision objects start or stop being in close proximity, contact, or disjoint.
 pub struct ProximityEvent {
     /// The first collider to which the proximity event applies.

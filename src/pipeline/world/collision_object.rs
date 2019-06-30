@@ -16,6 +16,7 @@ use std::ops::{Index, IndexMut};
 /// * Contacts + Contacts = exact contact point coputation.
 /// * Contacts + Proximity = proximity test only.
 /// * Proximity + Proximity = proximity test only.
+#[cfg_attr(feature = "serde-serialize", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum GeometricQueryType<N: RealField> {
     /// This objects can respond to both contact point computation and proximity queries.
@@ -78,6 +79,7 @@ impl<N: RealField> GeometricQueryType<N> {
     }
 }
 
+#[cfg_attr(feature = "serde-serialize", derive(serde::Serialize, serde::Deserialize))]
 /// A stand-alone object that has a position and a shape.
 pub struct CollisionObject<N: RealField, T> {
     handle: CollisionObjectHandle,

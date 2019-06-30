@@ -38,6 +38,7 @@ const NO_GROUP: u32 = 0;
 ///    * A and B will **not** interact because B is part of the group 1 which is blacklisted by A.
 ///    * Finally, B and C will **not** interact either because, even if C whitelists the group 3
 ///    (which B is part of), B does not whitelists the groups 6 nor 9 (which B is part of).
+#[cfg_attr(feature = "serde-serialize", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Clone, Debug, Copy)]
 pub struct CollisionGroups {
     membership: u32,
