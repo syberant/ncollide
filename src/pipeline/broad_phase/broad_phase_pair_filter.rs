@@ -16,6 +16,20 @@ pub struct BroadPhasePairFilters<N: RealField, T> {
     filters: Vec<(String, Box<dyn BroadPhasePairFilter<N, T>>)>,
 }
 
+#[cfg(feature = "serde-serialize")]
+impl<N: RealField, T> serde::Serialize for BroadPhasePairFilters<N, T> {
+    fn serialize<S: serde::Serializer>(&self, _serializer: S) -> Result<S::Ok, S::Error> {
+        unimplemented!()
+    }
+}
+
+#[cfg(feature = "serde-serialize")]
+impl<'de, N: RealField, T> serde::Deserialize<'de> for BroadPhasePairFilters<N, T> {
+    fn deserialize<D: serde::Deserializer<'de>>(_deserializer: D) -> Result<BroadPhasePairFilters<N, T>, D::Error> {
+        unimplemented!()
+    }
+}
+
 impl<N: RealField, T> BroadPhasePairFilters<N, T> {
     /// Creates a new set of collision filters.
     pub fn new() -> BroadPhasePairFilters<N, T> {

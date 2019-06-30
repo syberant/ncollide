@@ -163,6 +163,20 @@ impl<N: RealField> Clone for Box<dyn Shape<N>> {
 #[derive(Clone)]
 pub struct ShapeHandle<N: RealField>(Arc<Box<dyn Shape<N>>>);
 
+#[cfg(feature = "serde-serialize")]
+impl<N: RealField> serde::Serialize for ShapeHandle<N> {
+    fn serialize<S: serde::Serializer>(&self, _serializer: S) -> Result<S::Ok, S::Error> {
+        unimplemented!("Find solution for both `Arc` and trait object.")
+    }
+}
+
+#[cfg(feature = "serde-serialize")]
+impl<'de, N: RealField> serde::Deserialize<'de> for ShapeHandle<N> {
+    fn deserialize<D: serde::Deserializer<'de>>(_deserializer: D) -> Result<ShapeHandle<N>, D::Error> {
+        unimplemented!("Find solution for both `Arc` and trait object.")
+    }
+}
+
 impl<N: RealField> ShapeHandle<N> {
     /// Creates a sharable shape handle from a shape.
     #[inline]

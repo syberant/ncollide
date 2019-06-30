@@ -21,6 +21,21 @@ use std::vec::IntoIter;
 /// Type of the broad phase trait-object used by the collision world.
 pub type BroadPhaseObject<N> = Box<dyn BroadPhase<N, AABB<N>, CollisionObjectHandle>>;
 
+#[cfg(feature = "serde-serialize")]
+impl<N: RealField> serde::Serialize for BroadPhaseObject<N> {
+    fn serialize<S: serde::Serializer>(&self, _serializer: S) -> Result<S::Ok, S::Error> {
+        unimplemented!()
+    }
+}
+
+#[cfg(feature = "serde-serialize")]
+impl<'de, N: RealField> serde::Deserialize<'de> for BroadPhaseObject<N> {
+    fn deserialize<D: serde::Deserializer<'de>>(_deserializer: D) -> Result<BroadPhaseObject<N>, D::Error> {
+        unimplemented!()
+    }
+}
+
+#[cfg_attr(feature = "serde-serialize", derive(serde::Serialize, serde::Deserialize))]
 /// A world that handles collision objects.
 pub struct CollisionWorld<N: RealField, T> {
     objects: CollisionObjectSlab<N, T>,

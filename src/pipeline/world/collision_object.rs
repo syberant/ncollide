@@ -252,6 +252,20 @@ pub struct CollisionObjectSlab<N: RealField, T> {
     objects: Slab<CollisionObject<N, T>>,
 }
 
+#[cfg(feature = "serde-serialize")]
+impl<N: RealField, T> serde::Serialize for CollisionObjectSlab<N, T> {
+    fn serialize<S: serde::Serializer>(&self, _serializer: S) -> Result<S::Ok, S::Error> {
+        unimplemented!("TODO: look into slab and fix this")
+    }
+}
+
+#[cfg(feature = "serde-serialize")]
+impl<'de, N: RealField, T> serde::Deserialize<'de> for CollisionObjectSlab<N, T> {
+    fn deserialize<D: serde::Deserializer<'de>>(_deserializer: D) -> Result<CollisionObjectSlab<N, T>, D::Error> {
+        unimplemented!("TODO: look into slab and fix this")
+    }
+}
+
 impl<N: RealField, T> CollisionObjectSlab<N, T> {
     /// Creates a new empty collecton of collision objects.
     pub fn new() -> CollisionObjectSlab<N, T> {

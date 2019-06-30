@@ -18,6 +18,20 @@ pub struct NarrowPhase<N: RealField> {
     interactions: InteractionGraph<N>
 }
 
+#[cfg(feature = "serde-serialize")]
+impl<N: RealField> serde::Serialize for NarrowPhase<N> {
+    fn serialize<S: serde::Serializer>(&self, _serializer: S) -> Result<S::Ok, S::Error> {
+        unimplemented!()
+    }
+}
+
+#[cfg(feature = "serde-serialize")]
+impl<'de, N: RealField> serde::Deserialize<'de> for NarrowPhase<N> {
+    fn deserialize<D: serde::Deserializer<'de>>(_deserializer: D) -> Result<NarrowPhase<N>, D::Error> {
+        unimplemented!()
+    }
+}
+
 impl<N: RealField> NarrowPhase<N> {
     /// Creates a new `NarrowPhase`.
     pub fn new(
